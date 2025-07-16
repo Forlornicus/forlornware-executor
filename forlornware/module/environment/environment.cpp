@@ -184,6 +184,20 @@ namespace forlorn_ware
 				lua_pushvalue(L, LUA_ENVIRONINDEX);
 				return 1;
 			}
+                        int set_clipboard(lua_State* L)
+			{
+				 luaL_checktype(L, 1, LUA_TSTRING);
+                            std::string content = lua_tostring(L, 1);
+				HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, content.size() + 1);
+                                     memcpy(GlobalLock(hMem), content.data(), content.size());
+                                     GlobalUnlock(hMem);
+                                     OpenClipboard(0);
+                                     EmptyClipboard();
+                                    SetClipboardData(CF_TEXT, hMem);
+                                    CloseClipboard();
+                               return 0;
+			}
+
 
 			int load_string(lua_State* L)
 			{
@@ -287,7 +301,7 @@ namespace forlorn_ware
 				{"getgenv", get_genv},
 				{"gethui", get_hui},
 				//{"getscripts", get_scripts}, // i will recode this later or whatever since it gets all corescripts by default
-
+                                {"setclipboard", set_clipboard},
 				{"loadstring", load_string},
 				{nullptr, nullptr}
 			};
