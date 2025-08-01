@@ -11,7 +11,8 @@ struct lua_State;
 #define rebase(x) x + (uintptr_t)GetModuleHandle(nullptr)
 #define rebase_hyperion(x) x + (uintptr_t)GetModuleHandleA("RobloxPlayerBeta.dll")
     
-// updated for version-2a06298afe3947ab
+// updated for version-b8550645b8834e8a
+// offsets from discord.gg/6xFacqR2
 namespace update
 {
     // you only need to update this if you are calling the patch cfg function in entry.cpp
@@ -19,28 +20,28 @@ namespace update
 
     namespace roblox
     {
-        const uintptr_t print = rebase(0x14D2A10);
-        const uintptr_t luad_throw = rebase(0x268B3C0);
-        const uintptr_t get_lua_state = rebase(0xB8DA40);
-        const uintptr_t request_code = rebase(0x946B00);
+        const uintptr_t print = rebase(0x1516A40);
+        const uintptr_t luad_throw = rebase(0x2709910);
+        const uintptr_t get_lua_state = rebase(0xBC3D70);
+        const uintptr_t request_code = rebase(0x1065BA0);
     }
 
     namespace lua
     {
-        const uintptr_t luao_nilobject = rebase(0x47BF5D8);
-        const uintptr_t luau_execute = rebase(0x26BAE40);
-        const uintptr_t luah_dummynode = rebase(0x47BED08);
-        const uintptr_t opcode_lookup = rebase(0x4DBE9A0);
+        const uintptr_t luao_nilobject = rebase(0x4CCEFF8);
+        const uintptr_t luau_execute = rebase(0x273C6C0);
+        const uintptr_t luah_dummynode = rebase(0x4CCE728);
+        const uintptr_t opcode_lookup = rebase(0x4DBE9A0); //gay
     }
 
     namespace offsets
     {
         namespace datamodel
         {
-            const uintptr_t fake_datamodel = rebase(0x68D7308);
+            const uintptr_t fake_datamodel = rebase(0x68D7308); //gay
             const uintptr_t fake_datamodel_to_datamodel = 0x1C0;
             const uintptr_t script_context = 0x3C0;
-            const uintptr_t game_loaded = 0x668;
+            const uintptr_t game_loaded = 0x680;
         }
 
         namespace instance
@@ -70,33 +71,33 @@ namespace roblox
 #define LUAU_SEMICOLON_SEP ;
 
 #define LUAU_SHUFFLE3(s, a1, a2, a3) a3 s a2 s a1
-#define LUAU_SHUFFLE4(s, a1, a2, a3, a4) a4 s a3 s a1 s a2
-#define LUAU_SHUFFLE5(s, a1, a2, a3, a4, a5) a2 s a4 s a5 s a1 s a3
-#define LUAU_SHUFFLE6(s, a1, a2, a3, a4, a5, a6) a2 s a1 s a4 s a6 s a5 s a3
+#define LUAU_SHUFFLE4(s, a1, a2, a3, a4) a3 s a2 s a4 s a1
+#define LUAU_SHUFFLE5(s, a1, a2, a3, a4, a5) a3 s a4 s a2 s a5 s a1
+#define LUAU_SHUFFLE6(s, a1, a2, a3, a4, a5, a6) a2 s a4 s a3 s a1 s a5 s a6
 #define LUAU_SHUFFLE7(s, a1, a2, a3, a4, a5, a6, a7) a4 s a5 s a1 s a7 s a2 s a3 s a6
-#define LUAU_SHUFFLE8(s, a1, a2, a3, a4, a5, a6, a7, a8) a5 s a4 s a8 s a3 s a2 s a1 s a7 s a6
-#define LUAU_SHUFFLE9(s, a1, a2, a3, a4, a5, a6, a7, a8, a9) a9 s a2 s a4 s a8 s a3 s a7 s a5 s a1 s a6
+#define LUAU_SHUFFLE8(s, a1, a2, a3, a4, a5, a6, a7, a8) a3 s a2 s a4 s a8 s a6 s a5 s a7 s a1
+#define LUAU_SHUFFLE9(s, a1, a2, a3, a4, a5, a6, a7, a8, a9) a5 s a1 s a7 s a3 s a4 s a9 s a2 s a6 s a8
 
-#define PROTO_MEMBER1_ENC VMValue0
-#define PROTO_MEMBER2_ENC VMValue4
-#define PROTO_DEBUGISN_ENC VMValue3
-#define PROTO_TYPEINFO_ENC VMValue2
-#define PROTO_DEBUGNAME_ENC VMValue1
+#define PROTO_MEMBER2_ENC     vmval2
+#define PROTO_DEBUGISN_ENC    vmval4
+#define PROTO_TYPEINFO_ENC    vmval1
+#define PROTO_DEBUGNAME_ENC   vmval3
+#define PROTO_MEMBER1_ENC     vmval0
 
-#define LSTATE_STACKSIZE_ENC VMValue2
-#define LSTATE_GLOBAL_ENC VMValue0
+#define LSTATE_STACKSIZE_ENC  vmval1
+#define LSTATE_GLOBAL_ENC     vmval0
 
-#define CLOSURE_FUNC_ENC VMValue0
-#define CLOSURE_CONT_ENC VMValue3
-#define CLOSURE_DEBUGNAME_ENC VMValue4
+#define CLOSURE_CONT_ENC      vmval4
+#define CLOSURE_DEBUGNAME_ENC vmval2
+#define CLOSURE_FUNC_ENC      vmval0
 
-#define TABLE_MEMBER_ENC VMValue0
-#define TABLE_META_ENC VMValue0
+#define TSTRING_HASH_ENC      vmval3
+#define TSTRING_LEN_ENC       vmval0
 
-#define UDATA_META_ENC VMValue3
+#define TABLE_MEMBER_ENC      vmval0
+#define TABLE_META_ENC        vmval0
 
-#define TSTRING_HASH_ENC VMValue1
-#define TSTRING_LEN_ENC VMValue0
+#define UDATA_META_ENC        vmval4
 
-#define GSTATE_TTNAME_ENC VMValue0
-#define GSTATE_TMNAME_ENC VMValue0
+#define GSTATE_TTNAME_ENC     vmval0
+#define GSTATE_TMNAME_ENC     vmval0
